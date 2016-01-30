@@ -36,6 +36,12 @@ namespace Bonobo.Git.Server.Controllers
         [Dependency]
         public IAuthenticationProvider AuthenticationProvider { get; set; }
 
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+        }
+
         [WebAuthorize]
         public ActionResult Index(string sortGroup = null, string searchString = null)
         {
@@ -55,6 +61,30 @@ namespace Bonobo.Git.Server.Controllers
                     .ToDictionary(x => x.Key ?? string.Empty, x => x.ToArray());
 
             return View(list);
+        }
+
+        [HttpGet]
+        public ContentResult AllRepoAsJSON()
+        {
+            IEnumerable<RepositoryModel> repositoryModels;
+            if (User.IsInRole(Definitions.Roles.Administrator))
+            {
+                repositoryModels = RepositoryRepository.GetAllRepositories();
+            }
+            else
+            {
+                var userTeams = TeamRepository.GetTeams(User.Id()).Select(i => i.Name).ToArray();
+                repositoryModels = RepositoryRepository.GetPermittedRepositories(User.Id(), userTeams);
+            }
+
+            var repo = repositoryModels.Select(x => new { 
+                name = x.Name,
+                url = Url.Action(x.Name, "repository")
+            });
+
+            var data = Newtonsoft.Json.JsonConvert.SerializeObject(repo);
+            return Content(data, "application/json");
+            //return Json(repo, JsonRequestBehavior.AllowGet);
         }
 
         [WebAuthorizeRepository(RequiresRepositoryAdministrator = true)]

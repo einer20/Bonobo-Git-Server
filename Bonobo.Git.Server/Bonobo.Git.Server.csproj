@@ -687,8 +687,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_GlobalResources\Resources.cs-CZ.resx" />
-    <EmbeddedResource Include="App_GlobalResources\Resources.de-DE.resx" />
+    <EmbeddedResource Include="App_GlobalResources\Resources.cs-CZ.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Resources.de-DE.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.es-ES.resx" />
     <EmbeddedResource Include="App_GlobalResources\Resources.da-DK.resx" />
     <EmbeddedResource Include="App_GlobalResources\Resources.fr-FR.resx" />
