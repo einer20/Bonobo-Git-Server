@@ -36,12 +36,6 @@ namespace Bonobo.Git.Server.Controllers
         [Dependency]
         public IAuthenticationProvider AuthenticationProvider { get; set; }
 
-
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            base.OnException(filterContext);
-        }
-
         [WebAuthorize]
         public ActionResult Index(string sortGroup = null, string searchString = null)
         {
