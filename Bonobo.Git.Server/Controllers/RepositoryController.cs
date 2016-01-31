@@ -64,6 +64,7 @@ namespace Bonobo.Git.Server.Controllers
         }
 
         [HttpGet]
+        [WebAuthorize]
         public ContentResult AllRepoAsJSON()
         {
             IEnumerable<RepositoryModel> repositoryModels;
