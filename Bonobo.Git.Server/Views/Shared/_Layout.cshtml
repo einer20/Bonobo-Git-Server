@@ -21,13 +21,14 @@
                 @Html.ActionLink(UserConfiguration.Current.GetSiteTitle(), "", "", null, new { @class = "pure-menu-heading" })
 
                 <ul>
-                    <li>
-                        <select style="padding: 8px; " id="quick-repo-search" name="repository">
-                            <option value="0">Navigate to repository...</option>
-                        </select>
-                    </li>
+                    
                     @if (Request.IsAuthenticated)
                     {
+                        <li>
+                            <select style="padding: 8px; " id="quick-repo-search" name="repository">
+                                <option value="0">Navigate to repository...</option>
+                            </select>
+                        </li>
                         <li><a href="@Url.Action("Index", "Repository")" class="repository"><i class="fa fa-hdd-o"></i> @Resources.Layout_Repositories</a></li>
                     }
                     @if (User.IsInRole(Definitions.Roles.Administrator))
