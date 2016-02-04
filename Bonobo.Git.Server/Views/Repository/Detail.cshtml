@@ -122,6 +122,8 @@
                 {
                     <a class="pure-button" href="@Url.Action("Edit", new { id = Model.Name })"><i class="fa fa-pencil-square-o"></i> @Resources.Repository_Detail_Edit</a>
                     <a class="pure-button" href="@Url.Action("Delete", new { id = Model.Name })"><i class="fa fa-trash-o"></i> @Resources.Repository_Detail_Delete</a>
+                    <a class="pure-button" href="@Url.Action("Delete", new { id = Model.Name })"><i class="fa fa-trash-o"></i> @Resources.Repository_Detail_Delete</a>
+                    <a class="pure-button" href=gihub-windows://openRepo/@String.Concat(serverAddress.Replace("://", "://" + Uri.EscapeDataString(User.Id()) + "@").Replace("!", "\\"), Model.Name, ".git")>Open In GitHub Desktop</a>
                 }
                 </div>
 </fieldset>
